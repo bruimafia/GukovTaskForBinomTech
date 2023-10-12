@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GukovTaskForBinomTech</string>
+    <string name="look_history">Посмотреть историю</string>
+    <string name="photo">фотография</string>
+    <string name="zoom_in">приблизить</string>
+    <string name="zoom_out">отдаление</string>
+    <string name="my_location">мое местоположение</string>
+    <string name="next_tracker">следующий маркер</string>
+</resources>
