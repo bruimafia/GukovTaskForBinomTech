@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.location.LocationManager
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.widget.ImageView
@@ -111,8 +112,13 @@ class MainActivity : AppCompatActivity() {
 
         val btn_myLocation = findViewById<FloatingActionButton>(R.id.btn_myLocation)
         btn_myLocation.setOnClickListener {
-            map.controller.animateTo(locationOverlay.myLocation)
-            map.controller.setZoom(MAP_MARKER_ZOOM)
+            val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+            val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            if (isGpsEnabled) {
+                locationOverlay.enableMyLocation()
+                map.controller.animateTo(locationOverlay.myLocation)
+                map.controller.setZoom(MAP_MARKER_ZOOM)
+            } else Toast.makeText(this@MainActivity, "Проверьте, включена ли геолокация в телефоне", Toast.LENGTH_SHORT).show()
         }
 
         val btn_nextTracker = findViewById<FloatingActionButton>(R.id.btn_nextTracker)
