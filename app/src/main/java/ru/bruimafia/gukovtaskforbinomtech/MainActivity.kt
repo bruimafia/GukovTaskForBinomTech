@@ -112,6 +112,7 @@ class MainActivity : AppCompatActivity() {
 
         val btn_myLocation = findViewById<FloatingActionButton>(R.id.btn_myLocation)
         btn_myLocation.setOnClickListener {
+            checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, ACCESS_FINE_LOCATION)
             val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
             val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
             if (isGpsEnabled) {
